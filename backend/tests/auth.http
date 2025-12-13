@@ -1,12 +1,12 @@
-# POST http://localhost:3000/api/auth/register
-# Content-Type: application/json
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
 
-# {
-#   "email": "test@example.com",
-#   "password": "123456"
-# }
+{
+  "email": "test@example.com",
+  "password": "123456"
+}
 
-###
+#--------------------------------------------------------------------------
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
@@ -14,3 +14,13 @@ Content-Type: application/json
   "email": "test@example.com",
   "password": "123456"
 }
+
+#--------------------------------------------------------------------------
+### Health Check
+GET http://localhost:3000/api/health
+
+### Get sweets without token (should fail)
+GET http://localhost:3000/api/sweets
+
+
+
