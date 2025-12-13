@@ -32,3 +32,28 @@ export const deleteSweet = (req: Request, res: Response) => {
   sweetService.deleteSweet(req.params.id);
   res.status(204).send();
 };
+
+
+export const purchaseSweetController = (req: Request, res: Response) => {
+  try {
+    const sweet = sweetService.purchaseSweet(req.params.id);
+    res.json(sweet);
+  } catch (error: any) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const restockSweetController = (req: Request, res: Response) => {
+  try {
+    const { amount } = req.body;
+
+    if (!amount) {
+      return res.status(400).json({ message: "Restock amount required" });
+    }
+
+    const sweet = sweetService.restockSweet(req.params.id, Number(amount));
+    res.json(sweet);
+  } catch (error: any) {
+    res.status(400).json({ message: error.message });
+  }
+};

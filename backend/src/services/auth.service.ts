@@ -22,7 +22,8 @@ export const registerUser = async (
     id: Date.now().toString(),
     email,
     password: hashedPassword,
-    role: "USER",
+    role: email === "admin@sweetshop.com" ? "ADMIN" : "USER",
+
   };
 
   users.push(user);

@@ -1,26 +1,123 @@
+### Register user
+# POST http://localhost:3000/api/auth/register
+# Content-Type: application/json
+
+# {
+#   "email": "user@test.com",
+#   "password": "123456"
+# }
+
+### Login user
+# POST http://localhost:3000/api/auth/login
+# Content-Type: application/json
+
+# {
+#   "email": "user@test.com",
+#   "password": "123456"
+# }
+
+
+### Get sweets without token (should fail)
+# GET http://localhost:3000/api/sweets
+
+
+### Get sweets with token
+# GET http://localhost:3000/api/sweets
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDMyMDIsImV4cCI6MTc2NTY0NjgwMn0.NTtxQ2guj2Tcrblflg4SW6kjKMIZ6R9P0JVZF09mUrY
+
+### Create sweet 
+# POST http://localhost:3000/api/sweets
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDMyMDIsImV4cCI6MTc2NTY0NjgwMn0.NTtxQ2guj2Tcrblflg4SW6kjKMIZ6R9P0JVZF09mUrY
+# Content-Type: application/json
+
+# {
+#   "name": "Rasgulla",
+#   "category": "Bengali",
+#   "price": 20,
+#   "quantity": 10
+# }
+
+### Search by category
+# GET http://localhost:3000/api/sweets/search?category=Bengali
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDMyMDIsImV4cCI6MTc2NTY0NjgwMn0.NTtxQ2guj2Tcrblflg4SW6kjKMIZ6R9P0JVZF09mUrY
+
+### Search by name
+# GET http://localhost:3000/api/sweets/search?name=Rasgulla
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDMyMDIsImV4cCI6MTc2NTY0NjgwMn0.NTtxQ2guj2Tcrblflg4SW6kjKMIZ6R9P0JVZF09mUrY
+
+
+### Search by price range
+# GET http://localhost:3000/api/sweets/search?minPrice=10&maxPrice=30
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDMyMDIsImV4cCI6MTc2NTY0NjgwMn0.NTtxQ2guj2Tcrblflg4SW6kjKMIZ6R9P0JVZF09mUrY
+
+### Update sweet price
+# PUT http://localhost:3000/api/sweets/1765643339101
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDM4NjMsImV4cCI6MTc2NTY0NzQ2M30.WsiXrMPmFUJJEBMfLUuaxY3rEo4f2SUq4b-eBaxJpcw
+# Content-Type: application/json
+
+# {
+#   "price": 25
+# }
+
+
+### Purchase sweet
+# POST http://localhost:3000/api/sweets/1765643339101/purchase
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDM4NjMsImV4cCI6MTc2NTY0NzQ2M30.WsiXrMPmFUJJEBMfLUuaxY3rEo4f2SUq4b-eBaxJpcw
+# Content-Type: application/json
+
+# {
+#   "quantity": 9
+# }
+
+#--------------------------------------------------------------------------admin 
+### Register admin
 POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "test@example.com",
+  "email": "admin@sweetshop.com",
   "password": "123456"
 }
 
-#--------------------------------------------------------------------------
+### Login admin
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "test@example.com",
+  "email": "admin@sweetshop.com",
   "password": "123456"
 }
 
+### Restock sweet (admin only)
+POST http://localhost:3000/api/sweets/1765643339101/restock
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQ0MTgyMDI0Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY1NjQ0MjAxLCJleHAiOjE3NjU2NDc4MDF9.MNvz7lqnz2IPj6HpPC2RnMkInL-F-uxddsT-2wvjhic
+Content-Type: application/json
+
+{
+  "amount": 5
+}
+
+### Delete sweet (admin only)
+DELETE http://localhost:3000/api/sweets/1765643339101
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQ0MTgyMDI0Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY1NjQ0MjAxLCJleHAiOjE3NjU2NDc4MDF9.MNvz7lqnz2IPj6HpPC2RnMkInL-F-uxddsT-2wvjhic
+
+
+### protection with user tests
+DELETE http://localhost:3000/api/sweets/1765643339101
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDM4NjMsImV4cCI6MTc2NTY0NzQ2M30.WsiXrMPmFUJJEBMfLUuaxY3rEo4f2SUq4b-eBaxJpcw
+
+
 #--------------------------------------------------------------------------
 ### Health Check
-GET http://localhost:3000/api/health
+# GET http://localhost:3000/api/health
 
-### Get sweets without token (should fail)
-GET http://localhost:3000/api/sweets
+# ### Get sweets without token (should fail)
+# GET http://localhost:3000/api/sweets
+
+
+
+
+
 
 
 

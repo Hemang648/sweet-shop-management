@@ -42,3 +42,32 @@ export const deleteSweet = (id: string): void => {
   if (index === -1) throw new Error("Sweet not found");
   sweets.splice(index, 1);
 };
+
+
+export const purchaseSweet = (id: string): Sweet => {
+  const sweet = sweets.find((s) => s.id === id);
+  if (!sweet) {
+    throw new Error("Sweet not found");
+  }
+
+  if (sweet.quantity <= 0) {
+    throw new Error("Sweet out of stock");
+  }
+
+  sweet.quantity -= 1;
+  return sweet;
+};
+
+export const restockSweet = (id: string, amount: number): Sweet => {
+  const sweet = sweets.find((s) => s.id === id);
+  if (!sweet) {
+    throw new Error("Sweet not found");
+  }
+
+  if (amount <= 0) {
+    throw new Error("Restock amount must be greater than zero");
+  }
+
+  sweet.quantity += amount;
+  return sweet;
+};
