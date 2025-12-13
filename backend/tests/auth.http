@@ -69,7 +69,7 @@
 #   "quantity": 9
 # }
 
-#--------------------------------------------------------------------------admin 
+#--------------------------------------------------------------------------admin logins and tests
 ### Register admin
 POST http://localhost:3000/api/auth/register
 Content-Type: application/json
