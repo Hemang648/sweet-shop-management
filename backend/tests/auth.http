@@ -60,7 +60,7 @@ Content-Type: application/json
 
 
 ### Purchase sweet
-POST http://localhost:3000/api/sweets/b460e09f-d794-45f7-8974-c7424063f099/purchase
+POST http://localhost:3000/api/sweets/f79231bf-6e72-47b9-8ad8-f4b40ee5810a/purchase
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU5ODksImV4cCI6MTc2NTY4OTU4OX0.T8VjdSVX_jQLu64-wGQuQzGt8g9OZEBnq73jgKs9f5g
 Content-Type: application/json
 
@@ -89,8 +89,8 @@ Content-Type: application/json
 }
 
 ### Restock sweet (admin only)
-POST http://localhost:3000/api/sweets/1765643339101/restock
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQ0MTgyMDI0Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY1NjQ0MjAxLCJleHAiOjE3NjU2NDc4MDF9.MNvz7lqnz2IPj6HpPC2RnMkInL-F-uxddsT-2wvjhic
+POST http://localhost:3000/api/sweets/f79231bf-6e72-47b9-8ad8-f4b40ee5810a/restock
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU5ODksImV4cCI6MTc2NTY4OTU4OX0.T8VjdSVX_jQLu64-wGQuQzGt8g9OZEBnq73jgKs9f5g
 Content-Type: application/json
 
 {
