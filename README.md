@@ -46,6 +46,8 @@ npm test
 ### Login Page
 ![Login Page](ss/Login_page.png)
 
+### Test Report
+![TEST] (ss/test_report.png)
 
 ## 🤖 My AI Usage
 
