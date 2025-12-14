@@ -1,51 +1,60 @@
-import { Sweet } from "../models/sweet.model";
 
-const sweets: Sweet[] = [];
+// Updated code with Prisma integration
+import { prisma } from "../config/prisma";
 
-export const addSweet = (data: Omit<Sweet, "id">): Sweet => {
-  const sweet: Sweet = {
-    id: Date.now().toString(),
-    ...data,
-  };
-  sweets.push(sweet);
-  return sweet;
+export const addSweet = async (data: {
+  name: string;
+  category: string;
+  price: number;
+  quantity: number;
+}) => {
+  return prisma.sweet.create({ data });
 };
 
-export const getAllSweets = (): Sweet[] => sweets;
+export const getAllSweets = async () => {
+  return prisma.sweet.findMany();
+};
 
-export const searchSweets = (
+export const searchSweets = async (
   name?: string,
   category?: string,
   minPrice?: number,
   maxPrice?: number
-): Sweet[] => {
-  return sweets.filter((s) => {
-    return (
-      (!name || s.name.includes(name)) &&
-      (!category || s.category === category) &&
-      (!minPrice || s.price >= minPrice) &&
-      (!maxPrice || s.price <= maxPrice)
-    );
+) => {
+  return prisma.sweet.findMany({
+    where: {
+      AND: [
+        name ? { name: { contains: name } } : {},
+        category ? { category } : {},
+        minPrice ? { price: { gte: minPrice } } : {},
+        maxPrice ? { price: { lte: maxPrice } } : {},
+      ],
+    },
   });
 };
 
-export const updateSweet = (id: string, data: Partial<Sweet>): Sweet => {
-  const sweet = sweets.find((s) => s.id === id);
-  if (!sweet) throw new Error("Sweet not found");
-
-  Object.assign(sweet, data);
-  return sweet;
+export const updateSweet = async (
+  id: string,
+  data: Partial<{
+    name: string;
+    category: string;
+    price: number;
+    quantity: number;
+  }>
+) => {
+  return prisma.sweet.update({
+    where: { id },
+    data,
+  });
 };
 
-export const deleteSweet = (id: string): void => {
-  const index = sweets.findIndex((s) => s.id === id);
-  if (index === -1) throw new Error("Sweet not found");
-  sweets.splice(index, 1);
+export const deleteSweet = async (id: string) => {
+  await prisma.sweet.delete({ where: { id } });
 };
 
+export const purchaseSweet = async (id: string) => {
+  const sweet = await prisma.sweet.findUnique({ where: { id } });
 
-export const purchaseSweet = (id: string): Sweet => {
-  const sweet = sweets.find((s) => s.id === id);
   if (!sweet) {
     throw new Error("Sweet not found");
   }
@@ -54,20 +63,24 @@ export const purchaseSweet = (id: string): Sweet => {
     throw new Error("Sweet out of stock");
   }
 
-  sweet.quantity -= 1;
-  return sweet;
+  return prisma.sweet.update({
+    where: { id },
+    data: { quantity: sweet.quantity - 1 },
+  });
 };
 
-export const restockSweet = (id: string, amount: number): Sweet => {
-  const sweet = sweets.find((s) => s.id === id);
+export const restockSweet = async (id: string, amount: number) => {
+  if (amount <= 0) {
+    throw new Error("Invalid restock amount");
+  }
+
+  const sweet = await prisma.sweet.findUnique({ where: { id } });
   if (!sweet) {
     throw new Error("Sweet not found");
   }
 
-  if (amount <= 0) {
-    throw new Error("Restock amount must be greater than zero");
-  }
-
-  sweet.quantity += amount;
-  return sweet;
+  return prisma.sweet.update({
+    where: { id },
+    data: { quantity: sweet.quantity + amount },
+  });
 };

@@ -39,7 +39,8 @@ describe("Sweets API", () => {
       .post(`/api/sweets/${sweetId}/purchase`)
       .set("Authorization", `Bearer ${adminToken}`);
 
-    expect(res.body.quantity).toBe(4);
+    expect(res.status).toBe(200);
+    expect(res.body.quantity).toBe(4)
   });
 
   it("should delete sweet (admin only)", async () => {

@@ -109,13 +109,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1N
 
 #--------------------------------------------------------------------------
 ### Health Check
-# GET http://localhost:3000/api/health
+GET http://localhost:3000/api/health
 
 # ### Get sweets without token (should fail)
 # GET http://localhost:3000/api/sweets
 
 
 
+# npx prisma studio  {to open the database}
 
 
 
