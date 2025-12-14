@@ -22,9 +22,8 @@ Content-Type: application/json
 
 
 ### Get sweets with token
-# GET http://localhost:3000/api/sweets
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQzMDE0MzU2Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjU2NDMyMDIsImV4cCI6MTc2NTY0NjgwMn0.NTtxQ2guj2Tcrblflg4SW6kjKMIZ6R9P0JVZF09mUrY
-
+GET http://localhost:3000/api/sweets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2NDkyMTgsImV4cCI6MTc2NTY1MjgxOH0.j1VNXAht3FdhA1wXhcB3PVP7fmFEr7NBTaM5NZ68iAA
 ### Create sweet 
 POST http://localhost:3000/api/sweets
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU4MDksImV4cCI6MTc2NTY4OTQwOX0.R1gxO3MFIjCvPhy8XEFfb3ItnElSQt-nX_kx29rEegQ
@@ -39,12 +38,10 @@ Content-Type: application/json
 
 ### Search by category
 GET http://localhost:3000/api/sweets/search?category=Bengali
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU4MDksImV4cCI6MTc2NTY4OTQwOX0.R1gxO3MFIjCvPhy8XEFfb3ItnElSQt-nX_kx29rEegQ
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2NDkyMTgsImV4cCI6MTc2NTY1MjgxOH0.j1VNXAht3FdhA1wXhcB3PVP7fmFEr7NBTaM5NZ68iAA
 ### Search by name
 GET http://localhost:3000/api/sweets/search?name=Rasgulla
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU4MDksImV4cCI6MTc2NTY4OTQwOX0.R1gxO3MFIjCvPhy8XEFfb3ItnElSQt-nX_kx29rEegQ
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjEzOTI1Yi01YmFjLTQ4NzYtOWRjYi01Y2M4Nzg2ZmUyZDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU3MDA4NDYsImV4cCI6MTc2NTcwNDQ0Nn0.qNCk02zXawgG2MOyeS4tscuYFf7CYUN9T8EwTjcFG6c
 ### Search by price range
 GET http://localhost:3000/api/sweets/search?minPrice=10&maxPrice=30
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU4MDksImV4cCI6MTc2NTY4OTQwOX0.R1gxO3MFIjCvPhy8XEFfb3ItnElSQt-nX_kx29rEegQ
@@ -55,7 +52,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0M
 Content-Type: application/json
 
 {
-  "price": 25
+  "price": 44
 }
 
 
@@ -89,8 +86,8 @@ Content-Type: application/json
 }
 
 ### Restock sweet (admin only)
-POST http://localhost:3000/api/sweets/f79231bf-6e72-47b9-8ad8-f4b40ee5810a/restock
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU5ODksImV4cCI6MTc2NTY4OTU4OX0.T8VjdSVX_jQLu64-wGQuQzGt8g9OZEBnq73jgKs9f5g
+POST http://localhost:3000/api/sweets/12217741-ea6b-4708-986a-bfd548f40f94/restock
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjEzOTI1Yi01YmFjLTQ4NzYtOWRjYi01Y2M4Nzg2ZmUyZDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU3MDA4NDYsImV4cCI6MTc2NTcwNDQ0Nn0.qNCk02zXawgG2MOyeS4tscuYFf7CYUN9T8EwTjcFG6c
 Content-Type: application/json
 
 {
@@ -99,8 +96,7 @@ Content-Type: application/json
 
 ### Delete sweet (admin only)
 DELETE http://localhost:3000/api/sweets/1765643339101
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzY1NjQ0MTgyMDI0Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY1NjQ0MjAxLCJleHAiOjE3NjU2NDc4MDF9.MNvz7lqnz2IPj6HpPC2RnMkInL-F-uxddsT-2wvjhic
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NGQ0MjI4Zi01NWJiLTQ0ZWItYTBiMC1iMjBiYTU4Y2IxOGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjU2ODU5ODksImV4cCI6MTc2NTY4OTU4OX0.T8VjdSVX_jQLu64-wGQuQzGt8g9OZEBnq73jgKs9f5g
 
 ### protection with user tests
 DELETE http://localhost:3000/api/sweets/1765643339101
