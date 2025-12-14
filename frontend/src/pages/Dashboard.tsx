@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
-import { getSweets, purchaseSweet } from "../api/sweets";
+import Navbar from "../components/Navbar";
+import AddSweetForm from "../components/AddSweetForm";
 import SweetCard from "../components/SweetCard";
+import { getUserRole } from "../utils/auth";
+
+const role = getUserRole();
+const isAdmin = role === "ADMIN";
+
+import {
+  getSweets,
+  purchaseSweet,
+  deleteSweet,
+  restockSweet,
+} from "../api/sweets";
 
 type Sweet = {
   id: string;
@@ -12,40 +24,69 @@ type Sweet = {
 
 export default function Dashboard() {
   const [sweets, setSweets] = useState<Sweet[]>([]);
-  const [loading, setLoading] = useState(true);
 
   const loadSweets = async () => {
     const data = await getSweets();
     setSweets(data);
-    setLoading(false);
-  };
-
-  const handlePurchase = async (id: string) => {
-    await purchaseSweet(id);
-    loadSweets(); // refresh quantities
   };
 
   useEffect(() => {
     loadSweets();
   }, []);
 
-  if (loading) {
-    return <p className="text-center mt-10">Loading sweets...</p>;
-  }
+  // ---------- ADMIN ACTIONS ----------
+  const handleDelete = async (id: string) => {
+    await deleteSweet(id);
+    loadSweets();
+  };
+
+  const handleRestock = async (id: string) => {
+    const amount = prompt("Enter restock amount:");
+    if (!amount) return;
+
+    await restockSweet(id, Number(amount));
+    loadSweets();
+  };
+
+  const handlePurchase = async (id: string) => {
+    await purchaseSweet(id);
+    loadSweets();
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-2xl font-bold mb-6 text-center">
-        Sweet Shop Dashboard
-      </h1>
+      <Navbar />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {/* ADMIN ADD SWEET FORM */}
+      <AddSweetForm onAdded={loadSweets} />
+
+      {/* SWEETS LIST */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {sweets.map((sweet) => (
-          <SweetCard
-            key={sweet.id}
-            sweet={sweet}
-            onPurchase={handlePurchase}
-          />
+          <div key={sweet.id} className="bg-white p-4 rounded shadow">
+            <SweetCard sweet={sweet} onPurchase={handlePurchase} />
+
+            {/* ADMIN CONTROLS */}
+
+            {isAdmin && (
+  <div className="flex gap-2 mt-2">
+    <button
+      onClick={() => handleRestock(sweet.id)}
+      className="bg-yellow-500 text-white px-2 py-1 rounded"
+    >
+      Restock
+    </button>
+
+    <button
+      onClick={() => handleDelete(sweet.id)}
+      className="bg-red-600 text-white px-2 py-1 rounded"
+    >
+      Delete
+    </button>
+  </div>
+)}
+
+          </div>
         ))}
       </div>
     </div>
